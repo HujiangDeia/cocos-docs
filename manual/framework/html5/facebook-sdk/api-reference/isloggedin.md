@@ -1,24 +1,14 @@
-#isLoggedIn
+#.isLoggedIn()
 
-Check whether a user is currently logged in and has authorized your app.
-
-##Parameters
-
-```javascript
-plugin.FacebookAgent.prototype.isLoggedIn = function(callback){}
-```
-
-|Name|Type|Description|
-|----|----|-----------|
-|callback|Function|The callback will be passed a result code and a response object. Result code will be `plugin.FacebookAgent.CODE_SUCCEED` if check succeed, and response object will has a boolean type property `isLoggedIn`.|
+Check the user's authorization status. _false_ if the user has not logged into Facebook, or hasn't authorized your app; _true_ otherwise. Most often, this will be in the logic that determines whether to show a login control.
 
 ##Example
 
 ```javascript
-//assume facebook is the instance of FacebookAgent
-facebook.isLoggedIn(function(code, response){
-    if(code == plugin.FacebookAgent.CODE_SUCCEED){
-        cc.log("isLoggedIn : " + response["isLoggedIn"])
-    }
-});
+var facebook = plugin.FacebookAgent.getInstance();
+if (facebook.isLoggedIn()) {
+    // Get data from Facebook to personalize the player's experience
+} else {
+    // Prompt the user to log in, or offer a "guest" experience
+}
 ```
